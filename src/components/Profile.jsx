@@ -18,7 +18,7 @@ const Profile = () => {
       {/* Header */}
       <div className='user-profile flex items-center gap-4'>
         <div className='user-img cursor-pointer'>
-          <a href={data.html_url}>
+          <a href={data.html_url} target='_blank'>
             <img
               className='w-20 h-20 tablet:w-24 tablet:h-24 desktop:w-28 desktop:h-28 rounded-full hover:opacity-70'
               src={isSuccess ? data.avatar_url : UserIcon}
@@ -30,7 +30,14 @@ const Profile = () => {
             {isSuccess ? data.name : 'The Octobat'}
           </p>
           <span className='text-primary text-xs tablet:text-base desktop:text-lg cursor-pointer hover:opacity-70'>
-            @{isSuccess ? <a href={data.html_url}>{data.login}</a> : 'octobat'}
+            @
+            {isSuccess ? (
+              <a href={data.html_url} target='_blank'>
+                {data.login}
+              </a>
+            ) : (
+              'octobat'
+            )}
           </span>
           <p className='text-xs dark:text-white tablet:text-base desktop:text-lg mt-2'>
             Joined{' '}
@@ -79,6 +86,7 @@ const Profile = () => {
           <img className='w-5 h-5' src={websiteIcon} />
           <a
             href={data.blog}
+            target='_blank'
             className='dark:text-light cursor-pointer hover:opacity-70'
           >
             {data.blog ? data.blog : 'Not available'}
@@ -91,6 +99,7 @@ const Profile = () => {
               data.twitter_username &&
               `https://twitter.com/${data.twitter_username}`
             }
+            target='_blank'
             className='dark:text-light cursor-pointer hover:opacity-50'
           >
             {data.twitter_username ? data.twitter_username : 'Not available'}
